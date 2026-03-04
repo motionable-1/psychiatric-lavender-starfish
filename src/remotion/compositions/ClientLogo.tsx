@@ -66,7 +66,7 @@ export const ClientLogo: React.FC<ClientLogoProps> = ({
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const staggerDelay = index * 10;
+  const staggerDelay = index * 18;
   const f = Math.max(0, frame - startFrame - staggerDelay);
 
   // Scale spring

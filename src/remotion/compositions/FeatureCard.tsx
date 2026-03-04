@@ -26,7 +26,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const staggerDelay = index * 8;
+  const staggerDelay = index * 15;
   const f = Math.max(0, frame - startFrame - staggerDelay);
 
   // Card scale animation

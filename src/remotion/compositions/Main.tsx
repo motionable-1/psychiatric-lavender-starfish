@@ -117,7 +117,7 @@ const IntroScene: React.FC = () => {
   const frame = useCurrentFrame();
 
   // Tagline reveal
-  const taglineOpacity = interpolate(frame, [30, 45], [0, 1], {
+  const taglineOpacity = interpolate(frame, [50, 70], [0, 1], {
     extrapolateRight: "clamp",
   });
 
@@ -141,9 +141,9 @@ const IntroScene: React.FC = () => {
       {/* Brand name */}
       <div style={{ marginTop: 24 }}>
         <FadeInChars
-          startFrom={20}
-          stagger={0.04}
-          duration={0.5}
+          startFrom={30}
+          stagger={0.06}
+          duration={0.6}
           className="text-6xl font-bold tracking-tight"
           style={{ color: COLORS.text }}
         >
@@ -154,8 +154,8 @@ const IntroScene: React.FC = () => {
       {/* Tagline */}
       <div style={{ marginTop: 20, opacity: taglineOpacity }}>
         <FadeInWords
-          startFrom={40}
-          stagger={0.08}
+          startFrom={60}
+          stagger={0.12}
           className="text-2xl font-medium"
           style={{ color: COLORS.textMuted }}
         >
@@ -185,8 +185,8 @@ const ProblemScene: React.FC = () => {
 
       <div className="text-center max-w-4xl">
         <FadeInWords
-          startFrom={0}
-          stagger={0.1}
+          startFrom={10}
+          stagger={0.15}
           className="text-5xl font-bold leading-tight text-balance"
           style={{ color: COLORS.text }}
         >
@@ -195,8 +195,8 @@ const ProblemScene: React.FC = () => {
 
         <div style={{ marginTop: 32 }}>
           <BlurReveal
-            startFrom={30}
-            stagger={0.03}
+            startFrom={50}
+            stagger={0.05}
             className="text-2xl"
             style={{ color: COLORS.textMuted }}
           >
@@ -210,7 +210,7 @@ const ProblemScene: React.FC = () => {
             marginTop: 48,
             height: 2,
             background: `linear-gradient(90deg, transparent, ${COLORS.primary}, transparent)`,
-            width: interpolate(frame, [45, 75], [0, 400], {
+            width: interpolate(frame, [70, 100], [0, 400], {
               extrapolateRight: "clamp",
               easing: Easing.out(Easing.cubic),
             }),
@@ -259,7 +259,8 @@ const FeaturesScene: React.FC = () => {
       {/* Section title */}
       <div style={{ marginBottom: 48 }}>
         <FadeInWords
-          startFrom={0}
+          startFrom={10}
+          stagger={0.12}
           className="text-4xl font-bold"
           style={{ color: COLORS.text }}
         >
@@ -281,7 +282,7 @@ const FeaturesScene: React.FC = () => {
             icon={feature.icon}
             title={feature.title}
             description={feature.description}
-            startFrame={20}
+            startFrame={40}
             index={i}
             accentColor={COLORS.primary}
           />
@@ -317,7 +318,8 @@ const StatsScene: React.FC = () => {
 
       <div style={{ marginBottom: 48 }}>
         <FadeInWords
-          startFrom={0}
+          startFrom={10}
+          stagger={0.12}
           className="text-4xl font-bold"
           style={{ color: COLORS.text }}
         >
@@ -333,15 +335,15 @@ const StatsScene: React.FC = () => {
         }}
       >
         {stats.map((stat, i) => {
-          const staggerDelay = i * 12;
+          const staggerDelay = i * 15;
           const opacity = interpolate(
             frame,
-            [10 + staggerDelay, 25 + staggerDelay],
+            [30 + staggerDelay, 50 + staggerDelay],
             [0, 1],
             { extrapolateRight: "clamp" }
           );
           const scale = spring({
-            frame: Math.max(0, frame - 10 - staggerDelay),
+            frame: Math.max(0, frame - 30 - staggerDelay),
             fps,
             config: { damping: 12, stiffness: 100 },
           });
@@ -366,8 +368,8 @@ const StatsScene: React.FC = () => {
                 <Counter
                   from={0}
                   to={stat.value}
-                  duration={1.5}
-                  delay={0.3 + i * 0.2}
+                  duration={2}
+                  delay={0.5 + i * 0.3}
                   decimals={stat.decimals || 0}
                   suffix={stat.suffix}
                   abbreviate={stat.value >= 10000}
@@ -409,7 +411,8 @@ const ClientsScene: React.FC = () => {
 
       <div style={{ marginBottom: 48 }}>
         <FadeInWords
-          startFrom={0}
+          startFrom={10}
+          stagger={0.12}
           className="text-3xl font-semibold"
           style={{ color: COLORS.textMuted }}
         >
@@ -426,7 +429,7 @@ const ClientsScene: React.FC = () => {
         }}
       >
         {["Mozilla", "GitHub", "1Password"].map((name, i) => (
-          <ClientLogo key={name} name={name} startFrame={15} index={i} />
+          <ClientLogo key={name} name={name} startFrame={40} index={i} />
         ))}
       </div>
     </AbsoluteFill>
@@ -440,7 +443,7 @@ const ClosingScene: React.FC = () => {
 
   // Button animation
   const buttonScale = spring({
-    frame: Math.max(0, frame - 50),
+    frame: Math.max(0, frame - 80),
     fps,
     config: { damping: 10, stiffness: 150 },
   });
@@ -466,12 +469,13 @@ const ClosingScene: React.FC = () => {
 
       {/* Logo */}
       <Glow color={COLORS.primary} intensity={25} pulsate>
-        <SupabaseLogo size={100} color={COLORS.primary} startFrame={0} />
+        <SupabaseLogo size={100} color={COLORS.primary} startFrame={5} />
       </Glow>
 
       <div style={{ marginTop: 32 }}>
         <FadeInWords
-          startFrom={15}
+          startFrom={25}
+          stagger={0.12}
           className="text-5xl font-bold text-center text-balance"
           style={{ color: COLORS.text }}
         >
@@ -481,7 +485,8 @@ const ClosingScene: React.FC = () => {
 
       <div style={{ marginTop: 16 }}>
         <BlurReveal
-          startFrom={35}
+          startFrom={55}
+          stagger={0.04}
           className="text-xl"
           style={{ color: COLORS.textMuted }}
         >
@@ -494,7 +499,7 @@ const ClosingScene: React.FC = () => {
         style={{
           marginTop: 40,
           transform: `scale(${buttonScale})`,
-          opacity: interpolate(frame, [45, 55], [0, 1], {
+          opacity: interpolate(frame, [75, 90], [0, 1], {
             extrapolateRight: "clamp",
           }),
         }}
@@ -519,13 +524,13 @@ const ClosingScene: React.FC = () => {
 
 // Main composition
 export const Main: React.FC = () => {
-  // Scene durations in frames
-  const INTRO_DURATION = 90; // 3s
-  const PROBLEM_DURATION = 75; // 2.5s
-  const FEATURES_DURATION = 120; // 4s
-  const STATS_DURATION = 100; // 3.3s
-  const CLIENTS_DURATION = 75; // 2.5s
-  const CLOSING_DURATION = 100; // 3.3s
+  // Scene durations in frames (slowed down for better pacing)
+  const INTRO_DURATION = 150; // 5s - logo + name + tagline needs time
+  const PROBLEM_DURATION = 120; // 4s - headline + subhead + line animation
+  const FEATURES_DURATION = 180; // 6s - title + 3 cards with stagger
+  const STATS_DURATION = 150; // 5s - title + counters need time to animate
+  const CLIENTS_DURATION = 120; // 4s - title + 3 logos with stagger
+  const CLOSING_DURATION = 150; // 5s - logo + text + button reveal
 
   const TRANSITION_DURATION = 20;
 
